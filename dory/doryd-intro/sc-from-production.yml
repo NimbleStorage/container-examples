@@ -1,0 +1,10 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+ name: from-production
+provisioner: developer.hpe.com/nimble
+parameters:
+  description: "Clone from production database."
+  cloneOf: "transactionaldb-26063d7f-d7f2-11e7-8f86-000c291bed2c"
+  snapshot: "nightly-locktables"
