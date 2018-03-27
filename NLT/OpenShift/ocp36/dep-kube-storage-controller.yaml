@@ -1,0 +1,42 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kube-storage-controller-doryd
+  namespace: kube-system
+spec:
+  strategy:
+     type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        daemon: kube-storage-controller-daemon
+      name: kube-storage-controller
+    spec:
+      restartPolicy: Always
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      containers:
+        -
+          image: nimblestorage/kube-storage-controller:2.3.0
+          imagePullPolicy: Always
+          name: kube-storage-controller
+          command: ["doryd"]
+          args: ["/etc/origin/master/admin.kubeconfig", "hpe.com"]
+          volumeMounts:
+             - name: k8s
+               mountPath: /etc/origin
+             - name: flexvolumedriver
+               mountPath: /usr/libexec/kubernetes/kubelet-plugins/volume/exec
+             - name: dockersocket
+               mountPath: /run/docker/plugins/
+      volumes:
+        - name: k8s
+          hostPath:
+             path: /etc/origin/
+        - name: flexvolumedriver
+          hostPath:
+             path: /usr/libexec/kubernetes/kubelet-plugins/volume/exec
+        - name: dockersocket
+          hostPath:
+              path: /run/docker/plugins/
