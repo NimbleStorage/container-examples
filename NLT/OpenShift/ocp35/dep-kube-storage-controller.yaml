@@ -15,7 +15,7 @@ spec:
     spec:
       restartPolicy: Always
       nodeSelector:
-        node-role.kubernetes.io/master: "true"
+        node-role.kubernetes.io/master: ""
       containers:
         -
           image: nimblestorage/kube-storage-controller:2.3.0
