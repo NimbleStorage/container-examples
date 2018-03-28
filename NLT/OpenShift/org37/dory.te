@@ -1,0 +1,12 @@
+
+module dory 1.0;
+
+require {
+	type initrc_t;
+	type svirt_lxc_net_t;
+	class unix_stream_socket connectto;
+}
+
+#============= svirt_lxc_net_t ==============
+
+allow svirt_lxc_net_t initrc_t:unix_stream_socket connectto;
