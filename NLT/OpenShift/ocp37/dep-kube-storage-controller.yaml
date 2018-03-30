@@ -21,7 +21,7 @@ spec:
             - matchExpressions:
               - key: "node-role.kubernetes.io/master"
                 operator: In
-                values: [""]
+                values: ["true"]
       tolerations:
         -
           operator: Exists
@@ -36,8 +36,10 @@ spec:
           volumeMounts:
              - name: k8s
                mountPath: /etc/origin
+               readOnly: true
              - name: flexvolumedriver
                mountPath: /usr/libexec/kubernetes/kubelet-plugins/volume/exec
+               readOnly: true
              - name: dockersocket
                mountPath: /run/docker/plugins/
       volumes:
