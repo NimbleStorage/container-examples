@@ -1,0 +1,18 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: wordpress-clone
+provisioner: hpe.com/nimble
+parameters:
+  folder: General
+  cloneOf: general-ae125453-39c9-11e8-80f1-52540099902e
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: database-clone
+provisioner: hpe.com/nimble
+parameters:
+  folder: Uncapped
+  cloneOf: database-ae168471-39c9-11e8-80f1-52540099902e
