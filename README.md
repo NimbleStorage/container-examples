@@ -7,6 +7,7 @@ This is a collective repository of examples used for HPE Nimble Storage containe
 
 # Integration
 * [OpenShift](NLT/OpenShift): Companion repos for Red Hat OpenShift and OpenShift Origin with NLT.
+* [Docker Enterprise Edition](NLT/DockerEE): Companion repos for Docker Enterprise Edition with NLT.
 
 # License
 This software is [licensed](LICENSE) under Apache 2.0.
