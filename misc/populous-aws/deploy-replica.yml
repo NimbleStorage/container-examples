@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pldb
+  labels:
+    app: pldb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pldb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: pldb
+    spec:
+      containers:
+        - image: drajen/pldb
+          name: pldb
+          ports:
+            - containerPort: 3306
+              name: pldb
+          volumeMounts:
+            - name: pldb
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: pldb
+          persistentVolumeClaim: 
+            claimName: pldb

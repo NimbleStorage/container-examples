@@ -1,0 +1,114 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: populous
+data:
+  password: WU9VUl9QQVNTV09SRA==
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: populous
+  labels:
+    app: populous
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: populous
+  template:
+    metadata:
+      labels:
+        app: populous
+    spec:
+      containers:
+        - image: drajen/populous
+          name: populous
+          env:
+            - name: POPULOUS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: populous
+                  key: password
+            - name: POPULOUS_HOST
+              value: pldb
+            - name: POPULOUS_DB
+              value: populous
+            - name: POPULOUS_USER
+              value: populous
+            - name: DATAGEN
+              value: http://datagen
+          ports:
+            - containerPort: 8000
+              name: populous
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pldb
+  labels:
+    app: pldb
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: pldb
+  template:
+    metadata:
+      labels:
+        app: pldb
+    spec:
+      containers:
+        - image: drajen/pldb
+          name: pldb
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: populous
+                  key: password
+            - name: MYSQL_DATABASE
+              value: populous 
+            - name: MYSQL_USER
+              value: populous 
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: populous
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: pldb
+          volumeMounts:
+            - name: pldb
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: pldb
+          persistentVolumeClaim: 
+            claimName: pldb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pldb
+spec:
+  selector:
+    app: pldb
+  ports:
+  - name: pldb
+    protocol: TCP
+    port: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: populous
+spec:
+  selector:
+    app: populous
+  ports:
+  - name: populous
+    port: 8000

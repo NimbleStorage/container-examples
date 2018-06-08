@@ -1,0 +1,9 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: replica
+provisioner: hpe.com/nimble
+parameters:
+  description: "Ephemeral Clone provisioned by HPE Nimble Storage Kube Storage Controller from replica StorageClass"
+  importVolAsClone: "transactionaldb-30f6e5f9-4c20-11e8-acab-525400c423a5.kubernetes"
