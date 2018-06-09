@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  api:
+    container_name: "api"
+    build: 
+      context: "app/"
+      args:
+        BUILD_TAG: ${BUILD_TAG:-unknown}
+    image: "drajen/populous:${BUILD_TAG:-unknown}"
+    ports:
+      - "8000:8000"
+    environment:
+      POPULOUS_USER: populous
+      POPULOUS_PASSWORD: YOUR_PASSWORD
+      POPULOUS_HOST: pldb
+      POPULOUS_DB: populous
+  pldb:
+    image: "drajen/pldb"
+    volumes:
+      - cloneofprod:/var/lib/mysql
+
+volumes:
+  cloneofprod:
+    external: 
+      name: cloneofprod-${BUILD_TAG:-unknown}
