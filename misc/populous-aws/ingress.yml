@@ -1,0 +1,9 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api
+spec:
+  backend:
+    serviceName: populous
+    servicePort: 8000

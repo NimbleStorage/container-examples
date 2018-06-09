@@ -1,0 +1,11 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: cloneofprod
+provisioner: hpe.com/cv
+parameters:
+  description: "Ephemeral Volume provisioned by HPE Nimble Storage Kube Storage Controller from cloneofprod StorageClass"
+  limitIOPS: "500"
+  importVolAsClone: "transactionaldb-5eb3a858-68fa-11e8-a3d3-0242ac110010"
+  destroyOnDetach: "true"
