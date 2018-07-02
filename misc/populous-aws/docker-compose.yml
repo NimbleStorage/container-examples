@@ -5,8 +5,8 @@ services:
     build: 
       context: "app/"
       args:
-        BUILD_TAG: ${BUILD_TAG:-unknown}
-    image: "drajen/populous:${BUILD_TAG:-unknown}"
+        BUILD_NUMBER: ${BUILD_NUMBER:-unknown}
+    image: "drajen/populous:${BUILD_NUMBER:-unknown}"
     ports:
       - "8000:8000"
     environment:
@@ -17,9 +17,12 @@ services:
   pldb:
     image: "drajen/pldb"
     volumes:
-      - cloneofprod:/var/lib/mysql
-
+      - type: volume
+        source: cloneofprod
+        target: /var/lib/mysql
+        volume:
+          nocopy: true
 volumes:
   cloneofprod:
     external: 
-      name: cloneofprod-${BUILD_TAG:-unknown}
+      name: cloneofprod-${BUILD_NUMBER:-unknown}

@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+    - name: Ensure stage is clean ({{ ansible_env.BUILD_NUMBER }})
+      command: docker-compose down
+
+    - name: Clone Volume from Prod ({{ ansible_env.BUILD_NUMBER }})
+      command: >
+        docker volume create -d hpecv
+        -o cloneOf={{ POPULOUS_PROD_VOLUME }}
+        -o destroyOnDetach=true
+        -o createSnapshot=true
+        cloneofprod-{{ ansible_env.BUILD_NUMBER }}
+    - name: Run ({{ ansible_env.BUILD_NUMBER }})
+      command: docker-compose up -d

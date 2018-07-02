@@ -24,7 +24,7 @@ ADD template.json /app/run/
 EXPOSE 8000
 
 WORKDIR /app/run
-ARG BUILD_TAG
-RUN echo -n $BUILD_TAG > VERSION
+ARG BUILD_NUMBER
+RUN echo -n $BUILD_NUMBER > VERSION
 
 CMD [ "gunicorn", "-b", "0.0.0.0", "-t", "300", "--threads", "4", "populous:api" ]

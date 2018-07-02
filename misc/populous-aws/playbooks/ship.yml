@@ -1,0 +1,4 @@
+- hosts: localhost
+  tasks:
+    - name: Ship ({{ ansible_env.BUILD_NUMBER }})
+      command: docker-compose push

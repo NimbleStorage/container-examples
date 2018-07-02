@@ -1,0 +1,22 @@
+- hosts: localhost
+  tasks:
+    - name: Prepare to patch ({{ ansible_env.BUILD_NUMBER }})
+      set_fact:
+        stash: "{{ ansible_env.KUBECONFIG }}-stash"
+    - file:
+        state: directory
+        path: "{{ stash }}"
+    - command: tar xzvf {{ ansible_env.KUBECONFIG }}
+      args:
+        chdir: "{{ stash }}"
+    - template:
+        src: patch.sh.j2
+        dest: "{{ stash }}/patch.sh"
+    - file:
+        path: "{{ stash }}/patch.sh"
+        mode: 0700
+
+    - name: Patch production ({{ ansible_env.BUILD_NUMBER }})
+      shell: ./patch.sh
+      args:
+        chdir: "{{ stash }}"

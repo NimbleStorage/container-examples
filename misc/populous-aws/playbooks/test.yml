@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+    - name: Test ({{ ansible_env.BUILD_NUMBER }})
+      uri:
+        url: "{{ TEST_URL }}"
+        return_content: yes
+      register: test_status
+      retries: 24
+      delay: 3
+      until: test_status.json is defined and
+             test_status.json.version is defined and
+             test_status.json.version == "{{ ansible_env.BUILD_NUMBER }}"
+    - debug:
+        var: test_status
