@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress
+  annotations: 
+    hpe.com/description: "Restore of WordPress Prod"
+    hpe.com/importVol: %WORDPRESS_VOLUME%
+    hpe.com/restore: "true"
+    hpe.com/snapshot: nightly
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Ti
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb
+  annotations: 
+    hpe.com/description: "Restore of MariaDB Prod"
+    hpe.com/importVol: %MARIADB_VOLUME%
+    hpe.com/restore: "true"
+    hpe.com/snapshot: nightly
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 16Gi

@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress
+  annotations:
+    hpe.com/description: "This is my WordPress Prod volume"
+    hpe.com/perfPolicy: "Windows File Server"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Ti
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb
+  annotations:
+    hpe.com/description: "This is my MariaDB Prod volume"
+    hpe.com/perfPolicy: "SQL Server"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 16Gi

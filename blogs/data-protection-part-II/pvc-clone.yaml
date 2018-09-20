@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-clone
+  annotations: 
+    hpe.com/description: "Clone of Prod"
+    hpe.com/snapshot: nightly
+    hpe.com/destroyOnRm: "true"
+    hpe.com/cloneOfPVC: wordpress
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Ti

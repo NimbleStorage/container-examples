@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-remote
+  annotations:
+    remote.hpe.com/importVolAsClone: "%WORDPRESS_REMOTE%"
+    remote.hpe.com/snapshot: "%WORDPRESS_REMOTE_SNAPSHOT%"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: remote

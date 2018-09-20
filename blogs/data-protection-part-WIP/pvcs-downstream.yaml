@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress
+  annotations:
+    remote.hpe.com/description: "This is my remote recovered WordPress volume"
+    remote.hpe.com/importVol: "%WORDPRESS_DR%"
+    remote.hpe.com/forceImport: "true"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: downstream
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb
+  annotations:
+    remote.hpe.com/description: "This is my remote recovered MariaDB volume"
+    remote.hpe.com/importVol: "%MARIADB_DR%"
+    remote.hpe.com/forceImport: "true"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 16Gi
+  storageClassName: downstream

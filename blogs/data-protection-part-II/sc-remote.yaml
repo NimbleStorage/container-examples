@@ -1,0 +1,10 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: remote
+provisioner: remote.hpe.com/nimble
+parameters:
+  allowOverrides: description,importVolAsClone,snapshot,destroyOnDetach
+  destroyOnRm: "true"
+  description: "Volume cloned from remote StorageClass"

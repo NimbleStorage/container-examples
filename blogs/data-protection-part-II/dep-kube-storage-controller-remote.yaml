@@ -1,0 +1,46 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kube-storage-controller-doryd-remote
+  namespace: kube-system
+  labels:
+    app: doryd-remote
+spec:
+  strategy:
+     type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        daemon: kube-storage-controller-daemon-remote
+      name: kube-storage-controller-doryd-remote
+    spec:
+      restartPolicy: Always
+      serviceAccountName: doryd
+      containers:
+        -
+          image: nimblestorage/kube-storage-controller:2.4.1
+          imagePullPolicy: Always
+          name: kube-storage-controller-remote
+          args:
+            - /dev/null
+            - remote.hpe.com
+          volumeMounts:
+            - name: flexvolumedriver
+              mountPath: /usr/libexec/kubernetes/kubelet-plugins/volume/exec
+              readOnly: true
+            - name: dockersocket
+              mountPath: /run/docker/plugins/
+      volumes:
+        - name: flexvolumedriver
+          hostPath:
+            path: /usr/libexec/kubernetes/kubelet-plugins/volume/exec/
+        - name: dockersocket
+          hostPath:
+            path: /run/docker/plugins/
+      nodeSelector:
+        site: remote
+      tolerations:
+      - key: "node.kubernetes.io/unschedulable"
+        operator: "Exists"
+        effect: "NoSchedule"

@@ -1,0 +1,11 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: override
+provisioner: hpe.com/nimble
+parameters:
+  allowOverrides: perfPolicy,description
+  description: "Volume provisioned from override StorageClass"
+  perfPolicy: General
+  folder: General

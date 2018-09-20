@@ -1,0 +1,11 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: downstream
+provisioner: remote.hpe.com/nimble
+parameters:
+  allowOverrides: description,importVol,forceImport
+  takeover: "true"
+  reverseRepl: "true"
+  description: "Volume imported from downstream StorageClass"

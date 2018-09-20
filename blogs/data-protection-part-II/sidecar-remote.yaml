@@ -1,0 +1,31 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sidecar-remote
+  labels:
+    app: sidecar-remote
+spec:
+  replicas: 1
+  strategy: 
+    type: Recreate
+  selector:
+    matchLabels:
+      app: sidecar-remote
+  template:
+    metadata:
+      labels:
+        app: sidecar-remote
+    spec:
+      containers:
+        - image: bash
+          name: sidecar
+          args:
+            - sleep
+            - 64d
+      nodeSelector:
+        site: remote
+      tolerations:
+      - key: "node.kubernetes.io/unschedulable"
+        operator: "Exists"
+        effect: "NoSchedule"
