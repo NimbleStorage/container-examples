@@ -2,24 +2,24 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: sidecar-remote
+  name: proxy-remote
   labels:
-    app: sidecar-remote
+    app: proxy-remote
 spec:
   replicas: 1
   strategy: 
     type: Recreate
   selector:
     matchLabels:
-      app: sidecar-remote
+      app: proxy-remote
   template:
     metadata:
       labels:
-        app: sidecar-remote
+        app: proxy-remote
     spec:
       containers:
         - image: bash
-          name: sidecar
+          name: proxy
           args:
             - sleep
             - 64d
