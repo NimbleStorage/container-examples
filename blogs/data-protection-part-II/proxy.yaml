@@ -2,24 +2,24 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: sidecar
+  name: proxy
   labels:
-    app: sidecar
+    app: proxy
 spec:
   replicas: 1
   strategy: 
     type: Recreate
   selector:
     matchLabels:
-      app: sidecar
+      app: proxy
   template:
     metadata:
       labels:
-        app: sidecar
+        app: proxy
     spec:
       containers:
         - image: bash
-          name: sidecar
+          name: proxy
           args:
             - sleep
             - 128d
