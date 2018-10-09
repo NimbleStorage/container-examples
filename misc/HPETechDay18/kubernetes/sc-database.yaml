@@ -1,0 +1,13 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: database
+provisioner: hpe.com/cv
+parameters:
+  allowOverrides: limitIOPS
+  limitIOPS: "10000"
+  volumeType: PF
+  perfPolicy: "SQL Server"
+  protectionTemplate: "hourly:24"
+  fsMode: "0770"

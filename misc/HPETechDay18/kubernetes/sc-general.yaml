@@ -1,0 +1,13 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: general
+  annotations:
+    storageclass.beta.kubernetes.io/is-default-class: "true"
+provisioner: hpe.com/cv
+parameters:
+  allowOverrides: limitIOPS,perfPolicy
+  protectionTemplate: "hourly:24"
+  volumeType: GPF
+  limitIOPS: "4000"
