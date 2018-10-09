@@ -1,0 +1,99 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mariadb
+data:
+  password: WU9VUl9QQVNTV09SRA==
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mariadb
+  labels:
+    app: mariadb
+spec:
+  replicas: 1
+  strategy: 
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+        - image: mariadb
+          name: mariadb
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: mariadb
+          volumeMounts:
+            - name: mariadb
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mariadb
+          persistentVolumeClaim: 
+            claimName: mariadb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+  labels:
+    app: mariadb
+spec:
+  type: ClusterIP
+  ports:
+    - name: mariadb
+      port: 3306
+  selector:
+    app: mariadb
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  replicas: 1
+  strategy: 
+    type: Recreate
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+        - image: drajen/wordpress
+          name: wordpress
+          env:
+          - name: WORDPRESS_DB_HOST
+            value: mariadb:3306
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mariadb
+                key: password
+          ports:
+            - containerPort: 8080
+              name: wordpress
+          volumeMounts:
+            - name: wordpress
+              mountPath: /var/www/html
+      volumes:
+        - name: wordpress
+          persistentVolumeClaim: 
+            claimName: wordpress
