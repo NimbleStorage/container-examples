@@ -1,0 +1,97 @@
+---
+- hosts: all
+  vars:
+    local_packages:
+    - apt-transport-https 
+    - curl
+    - docker.io
+    - kubelet
+    - kubeadm
+    - kubectl
+    - zfsutils-linux
+    - libzfs2linux
+    local_services:
+      enabled:
+      - docker
+    local_mods:
+    - br_netfilter
+    kubeadm_init_args: "--pod-network-cidr=10.244.0.0/16"
+  tasks:
+    - name: Sanity check
+      fail:
+        msg: "Please provide API server listener IP address in extra var: local_listener"
+      when: local_listener is undefined
+
+    - name: Add kubeadm repos
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg 
+        state: present
+      become: yes
+    - apt_repository:
+        repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+      become: yes
+
+    - name: Install packages
+      apt:
+        update_cache: yes
+      become: yes
+    - apt:
+        name: "{{ item }}" 
+      with_items: "{{ local_packages }}"
+      become: yes
+        
+    - name: Load kernel mods
+      command: modprobe {{ item }}
+      with_items: "{{ local_mods }}"
+      become: yes
+
+    - name: Enable IP forwarding
+      shell: echo 1 > /proc/sys/net/ipv4/ip_forward
+      become: yes
+
+    - name: Disable swap
+      mount:
+        name: swap
+        fstype: swap
+        state: absent
+      become: yes
+    - command: swapoff -a
+      become: yes
+    
+    - name: Enable services
+      service:
+        name: "{{ item }}"
+        enabled: yes
+      with_items: "{{ local_services.enabled }}"
+      become: yes
+
+    - name: Install K8s
+      command: kubeadm init {{ kubeadm_init_args }} {{ local_listener }}
+      register: kubeadm
+      become: yes
+
+    - debug: 
+        var: kubeadm
+
+    - name: Post kubeadm
+      file:
+        path: "{{ ansible_user_dir }}/.kube"
+        state: directory
+    - command: cp /etc/kubernetes/admin.conf {{ ansible_user_dir }}/.kube/config
+      become: yes
+    - file:
+        path: "{{ ansible_user_dir }}/.kube/config"
+        owner: "{{ ansible_user_uid }}"
+        group: "{{ ansible_user_gid }}"
+      become: yes
+
+    - name: Remove taint
+      command: kubectl taint nodes --all node-role.kubernetes.io/master-
+
+    - name: Deploy flannel
+      command: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+    
+    - name: Convenience copy of config
+      command: cp {{ ansible_user_dir }}/.kube/config /vagrant/config
+      when: ansible_user_id == "vagrant"

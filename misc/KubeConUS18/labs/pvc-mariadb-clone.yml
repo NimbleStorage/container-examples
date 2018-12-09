@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-clone
+  annotations:
+    dev.hpe.com/description: My MariaDB Clone Claim
+    dev.hpe.com/cloneOfPVC: "mariadb"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
