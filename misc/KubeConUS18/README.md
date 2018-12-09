@@ -1,6 +1,9 @@
 # HPE Storage for Containers Workshop at KubeCon US 2018
 Welcome to the HPE workshop around persistent storage for containers using Kubernetes. You may follow this tutorial at any time after the show.
 
+# Objectives
+In this workshop/tutorial/lab we'll jump through the hoops to setup a single node sandbox Kubernetes instance with a dynamic provisioner to illustrate how to use a `StorageClass` to provision `PersistentVolumes` through `PersistentVolumeClaims`.
+
 # Prerequisites 
 The lab environment we're going to use is deployed in a clean single virtual machine. A Vagrantfile is provided (using the vmware_fusion provider) and it may be adapted to your favorite Vagrant provider.
 
