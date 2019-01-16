@@ -1,0 +1,12 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: registry
+provisioner: hpe.com/nimble
+parameters:
+  mountConflictDelay: "90"
+  description: "Volume provisioned by HPE Nimble Storage Kube Storage Controller from the registry StorageClass"
+  perfPolicy: "Windows File Server"
+  protectionTemplate: "Retain-48Hourly-30Daily-52Weekly"
+  fsMode: "0770"
