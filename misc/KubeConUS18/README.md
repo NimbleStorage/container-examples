@@ -1,5 +1,5 @@
 # HPE Storage for Containers Workshop at KubeCon US 2018
-Welcome to the HPE workshop around persistent storage for containers using Kubernetes. You may follow this tutorial at any time after the show.
+Welcome to the HPE workshop around persistent storage for containers using Kubernetes. You may follow this tutorial at any time after the show. TL;DR, there is now a [YouTube version](https://youtu.be/sECNuM268GI) of this workshop.
 
 # Table of Contents
 - [Objectives](#objectives)
