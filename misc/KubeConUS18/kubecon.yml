@@ -67,7 +67,7 @@
       become: yes
 
     - name: Install K8s
-      command: kubeadm init {{ kubeadm_init_args }} {{ local_listener }}
+      command: kubeadm init {{ kubeadm_init_args }} --apiserver-advertise-address {{ local_listener }}
       register: kubeadm
       become: yes
 
