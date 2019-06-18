@@ -48,7 +48,7 @@ You should now have a `config` file in your current directory on your Mac. This 
 export KUBECONFIG=$(pwd)/config
 kubectl get nodes
 ```
-You should something similar to this:
+You should see something similar to this:
 ```
 NAME      STATUS   ROLES    AGE   VERSION
 kubecon   Ready    master   39m   v1.13.0
