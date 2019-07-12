@@ -56,7 +56,7 @@ spec:
       serviceAccountName: doryd
       containers:
         -
-          image: nimblestorage/kube-storage-controller:2.3.0
+          image: nimblestorage/kube-storage-controller:2.5.0
           imagePullPolicy: Always
           name: kube-storage-controller
           volumeMounts:
