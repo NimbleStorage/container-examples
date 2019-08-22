@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb
+  annotations:
+    csi.hpe.com/description: Production MariaDB
+    csi.hpe.com/protectionTemplate: Retain-48Hourly-30Daily-52Weekly
+    csi.hpe.com/fsOwner: "1001:1001"
+    csi.hpe.com/limitIops: "50000"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
+  storageClassName: hpe-database

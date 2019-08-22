@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress
+  annotations:
+    csi.hpe.com/performancePolicy: "Windows File Server"
+    csi.hpe.com/limitIops: "5000"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 128Gi

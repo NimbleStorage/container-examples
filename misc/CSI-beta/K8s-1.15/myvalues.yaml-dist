@@ -1,0 +1,7 @@
+backend: 192.168.1.1
+username: admin
+password: admin
+servicePort: "8080"
+serviceName: nimble-csp-svc
+storageClass:
+  create: false

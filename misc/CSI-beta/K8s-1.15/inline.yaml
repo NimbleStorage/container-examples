@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ioping
+spec:
+  containers:
+  - name: ioping
+    image: hpestorage/ioping
+    command: [ "ioping" ]
+    args: [ "/scratch" ]
+    volumeMounts:
+    - name: transient
+      mountPath: /scratch
+  volumes:
+  - name: transient
+    csi:
+     driver: csi.hpe.com
+     volumeAttributes:
+       csi.storage.k8s.io/ephemeral: "true"
+       inline-volume-secret-name: nimble-secret
+       inline-volume-secret-namespace: kube-system
+       size: "64Gi"

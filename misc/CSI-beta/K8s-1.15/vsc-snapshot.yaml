@@ -1,0 +1,10 @@
+---
+apiVersion: snapshot.storage.k8s.io/v1alpha1
+kind: VolumeSnapshotClass
+metadata:
+  name: hpe-snapshot
+snapshotter: csi.hpe.com
+parameters:
+  description: "Snapshot created by the HPE CSI Driver"
+  csi.storage.k8s.io/snapshotter-secret-name: nimble-secret
+  csi.storage.k8s.io/snapshotter-secret-namespace: kube-system

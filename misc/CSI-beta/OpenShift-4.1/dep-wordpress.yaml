@@ -1,0 +1,39 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  replicas: 1
+  strategy: 
+    type: Recreate
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+        - image: bitnami/wordpress
+          name: wordpress
+          env:
+          - name: APACHE_HTTP_PORT_NUMBER
+            value: "8080"
+          - name: WORDPRESS_HTTP_PORT
+            value: "8080"
+          - name: ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          ports:
+            - containerPort: 8080
+              name: wordpress
+          volumeMounts:
+            - name: wordpress
+              mountPath: /bitnami
+      volumes:
+        - name: wordpress
+          persistentVolumeClaim: 
+            claimName: wordpress
