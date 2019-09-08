@@ -1,0 +1,137 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ha
+  labels:
+    app: ha
+spec:
+  ports:
+    - name: nfs
+      port: 2049
+    - name: rpcbind
+      port: 111
+    - name: pm1
+      port: 2224
+    - name: pm2
+      port: 3121
+    - name: pm3
+      port: 21064
+    - name: cs1
+      port: 5404
+      protocol: UDP
+    - name: cs2
+      port: 5405
+      protocol: UDP
+    - name: cs3
+      port: 5406
+      protocol: UDP
+  selector:
+    app: ha
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haproxy
+  labels:
+    app: haproxy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: haproxy
+  template:
+    metadata:
+      labels:
+        app: haproxy
+    spec:
+      containers:
+      - name: haproxy
+        image: haproxy:alpine
+        ports:
+        - name: nfs
+          containerPort: 2049
+        - name: rpcbind
+          containerPort: 111
+        volumeMounts:
+        - name: cfg
+          mountPath: /usr/local/etc/haproxy
+          readOnly: true
+      initContainers:
+      - name: services
+        image: drajen/butler:latest
+        command: [ 'sh', '-c', 'until host nfs-0.ha && host nfs-1.ha && host nfs-2.ha; do sleep 2; done;' ]
+      volumes:
+        - name: cfg
+          configMap:
+            name: haproxy
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nfs
+  labels:
+    app: nfs
+spec:
+  ports:
+    - name: nfs
+      port: 2049
+    - name: rpcbind
+      port: 111
+  selector:
+    app: haproxy
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nfs
+spec:
+  selector:
+    matchLabels:
+      app: ha # has to match .spec.template.metadata.labels
+  replicas: 3 # by default is 1
+  serviceName: ha
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app: ha # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: ganesha
+        image: drajen/butler:latest
+        ports:
+        - containerPort: 2049
+          name: nfs
+        - containerPort: 111
+          name: rpcbind
+        - containerPort: 2224
+          name: pm1
+        - containerPort: 3121
+          name: pm2
+        - containerPort: 21064
+          name: pm3
+        - containerPort: 5404
+          name: cs1
+        - containerPort: 5405
+          name: cs2
+        - containerPort: 5406
+          name: cs3
+        securityContext:
+          capabilities:
+            add: [ "CAP_SYS_ADMIN" , "SYS_RAWIO" , "DAC_READ_SEARCH" ]
+        volumeDevices:
+        - name: block
+          devicePath: /dev/xvda
+        volumeMounts:
+        - name: corosync
+          mountPath: /etc/corosync
+          readOnly: true
+      volumes:
+        - name: block
+          persistentVolumeClaim:
+            claimName: block
+        - name: corosync
+          secret:
+            secretName: corosync
