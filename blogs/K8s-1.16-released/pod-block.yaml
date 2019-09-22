@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: ioping
+    image: hpestorage/ioping
+    command: [ "ioping" ]
+    args: [ "/dev/xvda" ]
+    volumeDevices:
+    - name: data
+      devicePath: /dev/xvda
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: my-pvc-block

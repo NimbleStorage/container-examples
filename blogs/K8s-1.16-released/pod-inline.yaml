@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mariadb-ephemeral
+spec:
+spec:
+  containers:
+    - image: mariadb:latest
+      name: mariadb
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb
+              key: password
+      ports:
+        - containerPort: 3306
+          name: mariadb
+      volumeMounts:
+        - name: mariadb-persistent-storage
+          mountPath: /var/lib/mysql
+  volumes:
+    - name: mariadb-persistent-storage
+      csi:
+       driver: csi.hpe.com
+       nodePublishSecretRef:
+         name: nimble-secret
+       volumeAttributes:
+         cloneOf: pvc-ae007531-e315-4b81-b708-99778fa1ba87
