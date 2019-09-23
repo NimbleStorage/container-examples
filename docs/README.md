@@ -14,20 +14,18 @@ This is web site is rendered from the [HPE Nimble Storage "container-examples"](
 ## Topics
 The learning journey.
 
-Cloud Native Computing
-- [INTRODUCTION](CLOUD_NATIVE_INTRO.md)
-- [TOOLING](CLOUD_NATIVE_TOOLING.md)
-- [STORAGE](CLOUD_NATIVE_STORAGE.md)
-
-Containers
-- [INTRODUCTION](CONTAINER_INTRO.md)
-- [TOOLING](CONTAINER_TOOLING.md)
-- [STORAGE](CONTAINER_STORAGE.md)
-
-DevOps
-- [INTRODUCTION](DEVOPS_INTRO.md)
-- [TOOLING](DEVOPS_TOOLING.md)
-- [STORAGE](DEVOPS_STORAGE.md)
+- Cloud Native Computing
+ - [INTRODUCTION](CLOUD_NATIVE_INTRO.md)
+ - [TOOLING](CLOUD_NATIVE_TOOLING.md)
+ - [STORAGE](CLOUD_NATIVE_STORAGE.md)
+- Containers
+ - [INTRODUCTION](CONTAINER_INTRO.md)
+ - [TOOLING](CONTAINER_TOOLING.md)
+ - [STORAGE](CONTAINER_STORAGE.md)
+- DevOps
+ - [INTRODUCTION](DEVOPS_INTRO.md)
+ - [TOOLING](DEVOPS_TOOLING.md)
+ - [STORAGE](DEVOPS_STORAGE.md)
 
 ## Contributing
 We accept contributions. Please see [CONTRIBUTING](https://github.com/NimbleStorage/container-examples/CONTRIBUTING.md).
