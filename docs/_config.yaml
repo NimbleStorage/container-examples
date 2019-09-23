@@ -1,0 +1,5 @@
+theme: jekyll-theme-minimal
+title: Learning Cloud-Native
+description: This is a free learning resource from HPE which discsusses various cloud-native topics at different levels with a bias towards storage concepts.
+show_downloads: false
+logo: https://nimblestorage.github.io/container-examples/assets/hpe-dev-logo-mark-anim.svg
