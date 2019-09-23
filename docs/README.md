@@ -31,4 +31,4 @@ The learning journey.
 We accept contributions. Please see [CONTRIBUTING](https://github.com/NimbleStorage/container-examples/CONTRIBUTING.md).
 
 ## License
-All content is licensed under the Apache 2.0 license. Please see [LICENSE](https://github.com/NimbleStorage/container-examples/LICENSE.md) for more information.
+All content is licensed under the Apache 2.0 license. Please see [LICENSE](https://github.com/NimbleStorage/container-examples/LICENSE) for more information.
