@@ -17,25 +17,25 @@ These are some of the key elements of Cloud Native Computing.
 ## Learning Resources
 Curated list of learning resources for Cloud Native Computing.
 
-- Webinar: [What is Cloud Native and Why Does It Exist?](https://www.cncf.io/webinars/what-is-cloud-native-and-why-does-it-exist/)<br />
+- **Webinar:** [What is Cloud Native and Why Does It Exist?](https://www.cncf.io/webinars/what-is-cloud-native-and-why-does-it-exist/)<br />
   A webinar by WeaveWorks endorsed by the [CNCF](https://landscape.cncf.io/) (Cloud Native Computing Foundation).
-- Market Overview: [CNCF Cloud Native Interactive Landscape](https://landscape.cncf.io/)<br />
+- **Market Overview:** [CNCF Cloud Native Interactive Landscape](https://landscape.cncf.io/)<br />
   Many applications and vendors claim to be cloud native. This map is compiled by the CNCF.
-- Reference: [12factor.net](https://12factor.net/)<br />
+- **Reference:** [12factor.net](https://12factor.net/)<br />
   A design pattern for microservice architectures.
-- Blog: [The rise of cloud native programming languages](https://hackernoon.com/the-rise-of-cloud-native-programming-languages-211a5081f1b2)<br />
+- **Blog:** [The rise of cloud native programming languages](https://hackernoon.com/the-rise-of-cloud-native-programming-languages-211a5081f1b2)<br />
   A blog post that outlines the journey from bare-metal beyond serverless.
-- Blog: [10 Key Attributes of Cloud-native Applications](https://thenewstack.io/10-key-attributes-of-cloud-native-applications/)<br />
+- **Blog:** [10 Key Attributes of Cloud-native Applications](https://thenewstack.io/10-key-attributes-of-cloud-native-applications/)<br />
   A blog post from [thenewstack.io](https://thenewstack.io)
 
 ## Practical Exercises
 How to get hands-on experience of Cloud Native Computing.
 
 - Sign-up on any of the public clouds. 
- - Provision an instance and get remote access to the host OS of the instance. 
- - Deploy a "as-a-service" of an application technology you're familiar with.
- - Connect a client from your instance to your provisioned service.
- - Deploy either web server or Layer-4 load-balancer to give external access to your client application.
+  - Provision an instance and get remote access to the host OS of the instance. 
+  - Deploy a "as-a-service" of an application technology you're familiar with.
+  - Connect a client from your instance to your provisioned service.
+  - Deploy either web server or Layer-4 load-balancer to give external access to your client application.
 
 ## Next Topic
-Next up is [CLOUD NATIVE TOOLING](CLOUD_NATIVE_TOOLING.md)
+Next up is [CLOUD NATIVE TOOLING](CLOUD_NATIVE_TOOLING.md).
