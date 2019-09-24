@@ -13,6 +13,7 @@ These are some of the key elements of Cloud Native Computing.
 - Separation of concerns in microservice architectures.
 - High degree of automation of resource provisioning and deprovisioning.
 - Modern languges and frameworks.
+- Infrastructure-as-a-Service (IAAS)
 
 ## Learning Resources
 Curated list of learning resources for Cloud Native Computing.
