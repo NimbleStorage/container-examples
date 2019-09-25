@@ -20,7 +20,7 @@ To stay in control of the data and remain mobile, storing data outside of the co
 These are some of the key elements of Container Storage.
 
 - Ephemeral storage needs to be fast and expandable as environments scales with more diverse applications.
-- Data for stateful containers  is ideally storage outside of the container orchestrator, either the IaaS or external highly-available storage.
+- Data for stateful containers  is ideally stored outside of the container orchestrator, either the IaaS or external highly-available storage.
 - Persistent containers require niche storage solution tightly coupled with the container runtime and the container orchestrator or scheduler.
 - Most storage solutions provide an "access mode" often referred to as ReadWriteOnce (RWO) which only allow one Pod (in the Kubernetes case or containers from the same host access the volume. To allow multiple Pods and containers from multiple hosts, a distributed filesystem or an NFS server (widely adopted) is required to provide ReadWriteMany (RWX) access.
 
