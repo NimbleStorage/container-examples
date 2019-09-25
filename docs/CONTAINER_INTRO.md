@@ -7,6 +7,8 @@ If data is required to persist between upgrades and rollbacks of the container, 
 
 The wide adoption of containers are because they're lightweight, reproducible and runs everywhere. Iterations of software delivery lifecycles may be cut down to seconds from weeks with the right processes and tools.
 
+Container images are layered per change made when the container is built. Each layer has a cryptographic hash and the layer itself can be shared between multiple containers readonly. When a new container is started from an image, the container runtime creates a COW (copy-on-write) filesystem where the particular container data is stored. This is in turn very effective as you only need one copy of a layer on the host. For example, if a bunch of applications are based off a Ubuntu base image, the base image only need to be stored once on the host.
+
 ## Key Attributes
 These are some of the key elements of Containers.
 
@@ -26,6 +28,10 @@ Curated list of learning resources for Containers.
   A high production quality cartoon explaining Kubernetes API objects.
 - **Blog:** [How to choose the right container orchestration and how to deploy it](https://www.freecodecamp.org/news/how-to-choose-the-right-container-orchestration-and-how-to-deploy-it-41844021c241/})<br />
   A brief overview of container orchestrators.
+- **Standards:** [opencontainers.org](https://www.opencontainers.org/)<br />
+  Components of a container system is standards based. The Open Container Initiative is the standards body.
+- **Blog/reference:** [Demystifying container runtimes](https://lwn.net/Articles/741897/)<br />
+  Discusses different container runtime engines. 
 
 ## Practical Exercises
 How to get hands-on experience of Containers.
