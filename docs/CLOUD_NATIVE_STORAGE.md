@@ -1,7 +1,7 @@
 # Cloud Native Storage
 Storage for cloud computing come in many shapes and forms. Compute instances boot off block devices provided by the IaaS through the hypervisor. More devices may be attached for application data to keep host OS and application separate. Most clouds allows these devices to be snapshotted, cloned and reattached to other instances. These block devices are normally offered with different backend media, such as flash or spinning disks. Depending on the use cases and budgets parameters may be tuned to be just right.
 
-For unstructured workloads, API driver object storage is the dominant technology due to the dramatic difference in cost and simplicity vs cloud provided block storage. An object is uploaded through an API endpoint with HTTP and automatically distributed (highly configurable) to provide high durability. The URL of the object will remain static for the duration of its lifetime. The main prohibitor for object storage adoption is that existing applications relying on POSIX filesystems need to be rewritten. 
+For unstructured workloads, API driven object storage is the dominant technology due to the dramatic difference in cost and simplicity vs cloud provided block storage. An object is uploaded through an API endpoint with HTTP and automatically distributed (highly configurable) to provide high durability. The URL of the object will remain static for the duration of its lifetime. The main prohibitor for object storage adoption is that existing applications relying on POSIX filesystems need to be rewritten. 
 
 ## Key Attributes
 These are some of the key elements of Cloud Native Storage.
