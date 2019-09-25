@@ -42,7 +42,7 @@ How to get hands-on experience of Container Storage.
 - Use Docker Desktop.
   - Replace a mount point in an interactive container with a mount point from the host
 - Deploy a Amazon EKS or equivalent cluster.
-  - Create a PersistentVolumeClaim.
+  - Create a Persistent Volume Claim.
   - Run `kubectl get pv -o yaml` and match the Persistent Volume against the IaaS block volumes.
 
 ## Next Topic
