@@ -33,4 +33,4 @@ How to get hands-on experience of Cloud Native Storage.
 - Analyze costs of 100TB of data for one year on Amazon S3 vs Azure Manage Disks.
 
 ## Next Topic
-Next up is [CONTAINERS INTRO](CONTAINERS_INTRO.md).
+Next up is [CONTAINER INTRO](CONTAINER_INTRO.md).

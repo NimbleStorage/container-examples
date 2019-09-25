@@ -35,4 +35,4 @@ How to get hands-on experience of Containers.
   - Advanced: Run any of the images built in the tutorial on a public cloud service.
 
 ## Next Topic
-Next up is [CONTAINERS TOOLING](CONTAINERS_TOOLING.md).
+Next up is [CONTAINER TOOLING](CONTAINER_TOOLING.md).
