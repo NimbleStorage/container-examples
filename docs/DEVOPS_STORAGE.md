@@ -18,7 +18,7 @@ Curated list of learning resources for DevOps Storage.
 How to get hands-on experience of DevOps Storage.
 
 - Familiarize yourself with a storage system's RESTful API and automation capabilities.
-  - Deploy an Ansible Tower trial.
+  - Deploy an [Ansible Tower](https://www.ansible.com/products/tower/trial) trial.
   - Write an Ansible playbook that creates a storage resource on said system.
   - Create a job in Ansible Tower with the playbook and make it available to a restricted user.
 
