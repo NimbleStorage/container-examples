@@ -1,4 +1,6 @@
 # Cloud Native Computing Tooling
+*Reading time, about 2 minutes. External study not included*
+
 Tools to interact with infrastructure and applications come in many shapes and forms. A common pattern is to learn by visually creating and deleting resources to understand an end-state. Once a pattern has been established, either APIs, 3rd party or a custom CLI is used to manage the life-cycle of the deployment in a declarative manner by manipulating RESTful APIs. Also known as Infrastructure-as-Code.
 
 ## Key Attributes

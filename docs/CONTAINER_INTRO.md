@@ -1,4 +1,6 @@
 # Containers Intro
+*Reading time, about 3 minutes. External study not included*
+
 A container is operating system-level virtualization and has been around for quite some time. By definition, the container share the kernel of the host and relies on certain abstractions to be useful. Docker the company made the technology approachable and incredibly more convenient than any predecessor. In the simplest of forms, a container image contains a virtual filesystem that contains only the dependencies the application needs. An example would be to include the Python interpreter if you wrote a program in Python. 
 
 Containerized applications are primarily designed to run headless. In most cases these applications need to communicate with the outside world or allow inbound traffic depending on the application. Docker containers should be treated as transient, each instance starts in a known state and any data stored inside the virtual filesystem should be treated as ephemeral. This makes it extremely easy and convenient to upgrade and rollback a container. 

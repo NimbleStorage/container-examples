@@ -1,4 +1,6 @@
 # Container Storage
+*Reading time, about 3 minutes. External study not included*
+
 Due to the ephemeral nature of a container, storage is predominantly served from the host the container is running on and is dependent on which container runtime is being used where data is stored. In the case of Docker, the overlay filesystems are under `/var/lib/docker`. If a certain path inside the container need to persist between upgrades, restarts on a different host or any other operation that will lose the locality of the data, the mount point needs to be replaced with a "bind" mount from the host.
 
 There are also container runtime technologies that are designed to persist the entire container, effectively treating the container more like a long-lived Virtual Machine. Examples are Canonical LXD, WeaveWorks Footloose and HPE BlueData. This is particularly important for applications that rely on its projected node info to remain static throughout its entire lifecycle.

@@ -1,4 +1,6 @@
 # DevOps Tooling
+*Reading time, about 2 minutes. External study not included*
+
 The tools in DevOps are centered around the processes and value streams that supports the business. Said tools also promotes visibility, openness and collaboration. Inherently following security patterns, audit trails and safety. No one person should be able to misuse one tool to cause major disturbance in a value stream without quick remediation plans.
 
 Many times CI/CD (Continuous Integration, Continuous Delivery and/or Deployment) and synonymous with DevOps. That is both right and wrong. If the value stream inherently contains software, yes. 

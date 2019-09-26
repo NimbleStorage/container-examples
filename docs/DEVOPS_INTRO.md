@@ -1,4 +1,6 @@
 # DevOps
+*Reading time, about 2 minutes. External study not included*
+
 There are many interpretations of what DevOps "is". A bird's eye view is that there are people, processes and tools that come together to drive business outcomes through value streams. There are many core principles that could ultimately drive the outcome and no cookie cutter for solution for any given organization. Breaking down problems in to small pieces and creating safe systems to work in and eliminate toil are some of those principles. 
 
 Agile development and lean manufacturing are both predecessors and role models for driving DevOps principles.

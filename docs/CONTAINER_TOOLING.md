@@ -1,4 +1,6 @@
 # Container Tooling
+*Reading time, about 2 minutes. External study not included*
+
 Most of the tooling around containers are centered around what particular container orchestrator or development environment is being utilized. Using the tools differ greatly depending on the role of the user. As an operator the toolkit includes both IaaS and managing the platform to perform upgrades, user management and peripheral services such as storage and ingress load balancers. 
 
 While many popular platforms today are based on Kubernetes, the tooling have nuances. Upstream Kubernetes uses `kubectl`, Red Hat OpenShift uses the OpenShift CLI, `oc`. Other platforms such as Rancher, nearly all management can be done through a web UI.

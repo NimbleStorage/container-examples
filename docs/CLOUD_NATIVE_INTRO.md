@@ -1,4 +1,6 @@
 # Cloud Native Computing
+*Reading time, about 2 minutes. External study not included*
+
 The term "cloud native" stems from a software development model where resources are consumed as services. Compute, network and storage consumed through APIs, CLIs and web administration interfaces. Consumption is often modeled around paying only for what is being used.
 
 The applications deployed into Cloud Native Computing environments are often divided into small chunks that is operated independently, referred to as microservices. On the uprising is a broader adoption of a concept called serverless where your application on runs only when called and billed in milliseconds.
