@@ -28,7 +28,7 @@ The learning journey.
   - [STORAGE](DEVOPS_STORAGE.md)
 
 ## Contributing
-We accept contributions. Please see [CONTRIBUTING](https://github.com/NimbleStorage/container-examples/CONTRIBUTING.md).
+We accept contributions. Please see [CONTRIBUTING](https://github.com/NimbleStorage/container-examples/blob/master/CONTRIBUTING.md).
 
 ## License
-All content is licensed under the Apache 2.0 license. Please see [LICENSE](https://github.com/NimbleStorage/container-examples/LICENSE) for more information.
+All content is licensed under the Apache 2.0 license. Please see [LICENSE](https://github.com/NimbleStorage/container-examples/blog/master/LICENSE) for more information.
