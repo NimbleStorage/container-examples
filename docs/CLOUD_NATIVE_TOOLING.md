@@ -7,7 +7,7 @@ Tools to interact with infrastructure and applications come in many shapes and f
 These are some of the key elements of Cloud Native Computing Tooling.
 
 - State stored in a Source Code Control System (SCCS).
-- Changes made to state is peer reviewed and automatically tested in non-production environments before merged and deployed.
+- Changes made to state are peer reviewed and automatically tested in non-production environments before being merged and deployed.
 - Industry standard IT automation tools are often used to implement changes. Ansible, Puppet, Salt and Chef are example tools.
 - Public clouds often provide CLIs to manage resources. These are great to prepare, inspect and test deployments with.
 - Configuration and deployment files are often written in a human and machine readable format, such as JSON, YAML or TOML.
@@ -16,7 +16,7 @@ These are some of the key elements of Cloud Native Computing Tooling.
 Curated list of learning resources for Cloud Native Computing Tooling.
 
 - **Blog:** [Imperative vs Declarative](https://dev.to/stereobooster/imperative-vs-declarative-1f09)<br />
-  A blog that highlight the fundamental differences between the two.
+  A blog that highlights the fundamental differences between the two.
 - **Reference:** [json.org](https://www.json.org/)<br />
   Definitive guide on JavaScript Object Notation (JSON) data structures.
 - **Reference:** [YAML Syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)<br />

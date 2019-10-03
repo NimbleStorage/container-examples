@@ -7,9 +7,9 @@ Containerized applications are primarily designed to run headless. In most cases
 
 If data is required to persist between upgrades and rollbacks of the container, it needs to be stored outside of the container mapped from the host operating system.
 
-The wide adoption of containers are because they're lightweight, reproducible and runs everywhere. Iterations of software delivery lifecycles may be cut down to seconds from weeks with the right processes and tools.
+The wide adoption of containers are because they're lightweight, reproducible and run everywhere. Iterations of software delivery lifecycles may be cut down to seconds from weeks with the right processes and tools.
 
-Container images are layered per change made when the container is built. Each layer has a cryptographic hash and the layer itself can be shared between multiple containers readonly. When a new container is started from an image, the container runtime creates a COW (copy-on-write) filesystem where the particular container data is stored. This is in turn very effective as you only need one copy of a layer on the host. For example, if a bunch of applications are based off a Ubuntu base image, the base image only need to be stored once on the host.
+Container images are layered per change made when the container is built. Each layer has a cryptographic hash and the layer itself can be shared between multiple containers readonly. When a new container is started from an image, the container runtime creates a COW (copy-on-write) filesystem where the particular container data is stored. This is in turn very effective as you only need one copy of a layer on the host. For example, if a bunch of applications are based off a Ubuntu base image, the base image only needs to be stored once on the host.
 
 ## Key Attributes
 These are some of the key elements of Containers.

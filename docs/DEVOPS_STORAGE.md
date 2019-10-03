@@ -1,7 +1,7 @@
 # DevOps Storage
 *Reading time, about 2 minutes. External study not included*
 
-There aren't any particular storage paradigm (file/block/object) that is associated with DevOps. It's the implementation of the application and how it consumes storage that we vaguely may associate with DevOps. It's more of the practice of that the right security controls are in place and whomever needs storage resource are fully self serviced. Human or machine.
+There aren't any particular storage paradigms (file/block/object) that are associated with DevOps. It's the implementation of the application and how it consumes storage that we vaguely may associate with DevOps. It's more of the practice that the right security controls are in place and whomever needs storage resource are fully self serviced. Human or machine.
 
 ## Key Attributes
 These are some of the key elements of DevOps Storage.
@@ -24,5 +24,5 @@ How to get hands-on experience of DevOps Storage.
   - Write an Ansible playbook that creates a storage resource on said system.
   - Create a job in Ansible Tower with the playbook and make it available to a restricted user.
 
-## The End
+## Summary
 You have successfully completed the [CONTAINERS 101](README.md) topics provided by HPE. If you have time, please provide your feedback [through this survey](https://www.surveymonkey.com/r/CZZX63T).
