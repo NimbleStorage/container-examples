@@ -1,9 +1,14 @@
 # Container Examples
-This is a collective repository of examples used for HPE Nimble Storage container products and projects.
+This is a collective repository of examples used for HPE Nimble Storage (and some HPE Cloud Volumes) container products and projects.
 
-# Examples
-* [doryd-intro](dory/doryd-intro): Initial StorageClass examples, blog post available [here](https://developer.hpe.com/blog/doryd-a-dynamic-provisioner-for-docker-volume-plugins).
-* [data-protection](blogs/data-protection): Data Protection for Containers, blog post available [here](https://community.hpe.com/t5/HPE-Storage-Tech-Insiders/Data-Protection-for-Containers-Part-I-Backup/ba-p/7002477).
+# Learning
+If you're new to containers, cloud native and DevOps we've compiled a study guide we dubbed [Containers 101](https://nimblestorage.github.io/container-examples/).
+
+# Blogs
+Source files for [blogs](blogs/).
+
+# Misc.
+Source files for [events, releases or demos](misc).
 
 # Integration
 * [OpenShift](NLT/OpenShift): Companion repos for Red Hat OpenShift and OpenShift Origin with NLT.
