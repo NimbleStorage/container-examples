@@ -24,6 +24,8 @@ Curated list of learning resources for Containers.
 
 - **Interactive:** [Play with Docker](https://training.play-with-docker.com/)<br />
   Great interactive tutorials where you learn how to build, ship and run containers. Also has a follow-on interactive training on Kubernetes.
+- **Tutorial:** [Docker for beginners](https://docker-curriculum.com/)<br />
+  Comprehensive introduction to get started with Docker all the way to running it on a PaaS.
 - **Cartoon:** [The Illustrated Children's Guide to Kubernetes](https://www.youtube.com/watch?v=4ht22ReBjno)<br />
   Illustrative and easy to grasp story of what Kubernetes is.
 - **Bonus cartoon:** [A Kubernetes story: Phippy goes to the zoo](https://www.youtube.com/watch?v=R9-SOzep73w)<br />
