@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    image: nginx:latest
+    ports:
+    - "8080:80"
+    volumes:
+    - html:/usr/share/nginx/html
+volumes:
+  html:
+    driver: nimble:latest
+    driver_opts:
+      sizeInGiB: "8"
+      limitIOPS: "2000"
