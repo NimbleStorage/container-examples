@@ -1,0 +1,10 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: database
+provisioner: hpe.com/nimble
+parameters:
+  allowOverrides: limitIOPS
+  limitIOPS: "10000"
+  perfPolicy: "SQL Server"

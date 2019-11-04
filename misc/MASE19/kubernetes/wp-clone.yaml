@@ -1,0 +1,96 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-clone
+  labels:
+    app: mariadb-clone
+spec:
+  replicas: 1
+  strategy: 
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mariadb-clone
+  template:
+    metadata:
+      labels:
+        app: mariadb-clone
+    spec:
+      containers:
+        - image: mariadb
+          name: mariadb
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: mariadb
+          volumeMounts:
+            - name: mariadb
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mariadb
+          persistentVolumeClaim: 
+            claimName: mariadb-clone
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-clone
+  labels:
+    app: mariadb-clone
+spec:
+  type: ClusterIP
+  ports:
+    - name: mariadb
+      port: 3306
+  selector:
+    app: mariadb-clone
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-clone
+  labels:
+    app: wordpress-clone
+spec:
+  replicas: 1
+  strategy: 
+    type: Recreate
+  selector:
+    matchLabels:
+      app: wordpress-clone
+  template:
+    metadata:
+      labels:
+        app: wordpress-clone
+    spec:
+      containers:
+        - image: wordpress
+          name: wordpress
+          env:
+          - name: WORDPRESS_DB_HOST
+            value: mariadb-clone:3306
+          - name: WORDPRESS_CONFIG_EXTRA
+            value: |
+              define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
+              define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST']);
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mariadb
+                key: password
+          ports:
+            - containerPort: 80
+              name: wordpress
+          volumeMounts:
+            - name: wordpress
+              mountPath: /var/www/html
+      volumes:
+        - name: wordpress
+          persistentVolumeClaim: 
+            claimName: wordpress-clone
