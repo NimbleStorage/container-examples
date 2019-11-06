@@ -1,0 +1,14 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mariadb
+  labels:
+    app: mariadb
+spec:
+  ports:
+    - name: mariadb
+      port: 3306
+      protocol: TCP
+  selector:
+    app: mariadb

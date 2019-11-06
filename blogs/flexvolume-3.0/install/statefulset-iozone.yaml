@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: io
+spec:
+  selector:
+    matchLabels:
+      app: iozone
+  serviceName: iozone
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: iozone
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: iozone
+        image: threadx/iozone
+        volumeMounts:
+        - name: vol
+          mountPath: /vol
+        command:
+          - iozone 
+          - -az 
+          - -i0 
+          - -i1 
+          - -Io 
+          - -f 
+          - /vol/iozone.tmp
+  volumeClaimTemplates:
+  - metadata:
+      name: vol
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 32Gi
