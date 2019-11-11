@@ -1,0 +1,13 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: hpe-transition
+provisioner: hpe.com/nimble
+parameters:
+  allowOverrides: importVol,forceImport,takeover,reverseRepl,description,perfPolicy
+  protectionTemplate: "Workload-Transition"
+  syncOnUnmount: "true"
+  destroyOnRm: "false"
+  perfPolicy: "Other Workloads"
+  description: "Volume provisioned by the HPE Volume Driver for Kubernetes FlexVolume Plugin"

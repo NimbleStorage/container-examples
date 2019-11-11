@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb
+  annotations:
+    hpe.com/importVol: "hpe-transition-314fbe72-da50-11e9-87e6-e6bf74579760.docker"
+    hpe.com/description: "My volume to be transitioned"
+    hpe.com/reverseRepl: "true"
+    hpe.com/takeover: "true"
+    hpe.com/forceImport: "true"
+spec:
+  accessModes: [ "ReadWriteOnce" ]
+  resources:
+    requests:
+      storage: 16Gi
+  storageClassName: hpe-transition
