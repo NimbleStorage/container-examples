@@ -11,4 +11,4 @@ volumes:
     driver: nimble:latest
     driver_opts:
       sizeInGiB: "8"
-      limitIOPS: "2000"
+      limitIOPS: "1000"
