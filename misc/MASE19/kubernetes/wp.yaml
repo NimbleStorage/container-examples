@@ -76,6 +76,10 @@ spec:
       labels:
         app: wordpress
     spec:
+      initContainers:
+        - name: dbcheck
+          image: busybox
+          command: ['sh', '-c', 'until nslookup mariadb; do echo waiting for mariadb; sleep 2; done;']
       containers:
         - image: wordpress
           name: wordpress

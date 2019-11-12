@@ -4,8 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: mariadb-clone
   annotations:
-    hpe.com/limitIOPS: "1000"
     hpe.com/cloneOfPVC: mariadb
+    hpe.com/limitIOPS: "1000"
 spec:
   accessModes:
     - ReadWriteOnce
