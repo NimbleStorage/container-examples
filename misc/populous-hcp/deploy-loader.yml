@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loader
+  labels:
+    app: loader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loader
+  template:
+    metadata:
+      labels:
+        app: loader
+    spec:
+      containers:
+        - image: drajen/loader
+          name: loader
+          env:
+            - name: POPULOUS_URL
+              value: http://populous.dev.datamattsson.io/api/populous

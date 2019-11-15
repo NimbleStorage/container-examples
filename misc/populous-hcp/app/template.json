@@ -1,0 +1,54 @@
+{
+	"numRows": 128,
+	"countries": [ ],
+	"rows": [
+		{
+		"type": "GUID",
+		"title": "guid"
+		},
+		{
+		"type": "NumberRange",
+		"title": "pid",
+		"settings": {
+			"rangeMin": 100000000000,
+			"rangeMax": 999999999999
+			}
+		},
+		{
+		"type": "StreetAddress",
+		"title": "street"
+		},
+		{
+		"type": "PostalZip",
+		"title": "zip",
+		"settings": {
+			"countries": [ "US" ]
+			}
+		},
+		{
+		"type": "Constant",
+		"title": "city",
+		"settings": {
+			"loopCount": 1,
+			"values": "Mega City One"
+			}
+		},
+		{
+		"type": "Email",
+		"title": "email"
+		},
+		{
+            	"type": "Names",
+            	"title": "name",
+            	"settings": {
+                	"placeholder": "Name Surname"
+			}
+        	}
+    	],
+    	"export": {
+		"type": "JSON",
+		"settings": {
+			"dataStructureFormat": "simple"
+		}
+	}
+}

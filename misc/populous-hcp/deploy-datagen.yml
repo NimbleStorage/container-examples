@@ -1,0 +1,127 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: datagen
+data:
+  password: WU9VUl9QQVNTV09SRA==
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dgdb
+  labels:
+    db: dgdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      db: dgdb
+  template:
+    metadata:
+      labels:
+        db: dgdb
+    spec:
+      containers:
+        - image: mariadb:latest
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "exec mysqladmin status -uroot -p$MYSQL_ROOT_PASSWORD"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          name: mariadb
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: datagen
+                  key: password
+            - name: MYSQL_DATABASE
+              value: datagen 
+            - name: MYSQL_USER
+              value: datagen 
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: datagen
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: dgdb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datagen
+  labels:
+    app: datagen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datagen
+  template:
+    metadata:
+      labels:
+        app: datagen
+    spec:
+      containers:
+        - image: mvisonneau/generatedata:3.3.1
+          readinessProbe:
+            httpGet:
+              path: /license.txt
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          lifecycle:
+            postStart:
+              exec: 
+                command: ["/bin/bash", "-c",
+                  "until nslookup dgdb; do echo waiting for db; sleep 2; done &&
+                  sleep 45 &&
+                  curl -XPOST --connect-timeout 300 -F userAccountSetup=anonymousAdmin -F action=installationCreateDatabase http://$HOSTNAME/ajax.php && 
+                  curl -XPOST --connect-timeout 300 -F action=installDataTypes http://$HOSTNAME/ajax.php &&
+                  curl -XPOST --connect-timeout 300 -F action=installExportTypes http://$HOSTNAME/ajax.php &&
+                  curl -XPOST --connect-timeout 300 -F action=installCountries http://$HOSTNAME/ajax.php &&
+                  curl -XPOST --connect-timeout 300 -d 'action=completeInstallation&dataTypes%5B%5D=Names&dataTypes%5B%5D=NamesRegional&dataTypes%5B%5D=Phone&dataTypes%5B%5D=PhoneRegional&dataTypes%5B%5D=Email&dataTypes%5B%5D=Date&dataTypes%5B%5D=Company&dataTypes%5B%5D=SIRET&dataTypes%5B%5D=Rut&dataTypes%5B%5D=PersonalNumber&dataTypes%5B%5D=OrganisationNumber&dataTypes%5B%5D=SocialSecurityNumber&dataTypes%5B%5D=StreetAddress&dataTypes%5B%5D=City&dataTypes%5B%5D=PostalZip&dataTypes%5B%5D=Region&dataTypes%5B%5D=Country&dataTypes%5B%5D=LatLng&dataTypes%5B%5D=PAN&dataTypes%5B%5D=PIN&dataTypes%5B%5D=CVV&dataTypes%5B%5D=Track1&dataTypes%5B%5D=Track2&dataTypes%5B%5D=TextFixed&dataTypes%5B%5D=TextRandom&dataTypes%5B%5D=AlphaNumeric&dataTypes%5B%5D=Boolean&dataTypes%5B%5D=AutoIncrement&dataTypes%5B%5D=NumberRange&dataTypes%5B%5D=GUID&dataTypes%5B%5D=Currency&dataTypes%5B%5D=NormalDistribution&dataTypes%5B%5D=Constant&dataTypes%5B%5D=Composite&dataTypes%5B%5D=Tree&dataTypes%5B%5D=List&dataTypes%5B%5D=Computed&exportTypes%5B%5D=JSON&countries%5B%5D=US' http://$HOSTNAME/ajax.php" ]
+          name: datagen
+          env:
+            - name: GD_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: datagen
+                  key: password
+            - name: GD_DB_HOSTNAME
+              value: dgdb
+            - name: GD_DB_NAME
+              value: datagen
+            - name: GD_DB_USERNAME
+              value: datagen
+            - name: GD_API_ENABLED
+              value: "true"
+          ports:
+            - containerPort: 80
+              name: datagen
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dgdb
+spec:
+  selector:
+    db: dgdb
+  ports:
+  - name: dgdb
+    protocol: TCP
+    port: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datagen
+spec:
+  selector:
+    app: datagen
+  ports:
+  - name: datagen
+    port: 80
