@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app3
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app3
+  labels:
+    app: app3
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: app3
+  template:
+    metadata:
+      labels:
+        app: app3
+    spec:
+      containers:
+        - image: drajen:app3
+          name: app3
+          volumeMounts:
+            - name: app3
+              mountPath: /data
+      volumes:
+        - name: app3
+          persistentVolumeClaim:
+            claimName: app3
